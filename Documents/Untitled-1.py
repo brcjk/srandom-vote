@@ -58,6 +58,6 @@ def teir(*args):
     for b in bsaver:
         print("".join(x for x in b), end='')
     
-items = '''Y'''
-teir(items, 'To_', 'EK5udSwD', 'Aa|g`n017$%<?', 'LXfmqx89.:}', ',@;lbzji')
+items = '''A{ONv`_SR0hWELKJDCfed.8'''
+teir("¡~;p1)$/", "*MIHVTw7FQBAP65&%-uXtsr2ba#!,:¦¤j}>^@", items, '<4Gi?cm9Blq¥y(¢', "n£z3|")
 #WORST FIRST

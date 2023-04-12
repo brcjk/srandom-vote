@@ -38,8 +38,10 @@ list1.append('ª')
 try:
     list1 = list1[:int(sys.argv[1])]
     h = ""
-except:
+except ValueError:
     h = str(sys.argv[1])
+except IndexError:
+    h = ""
 
 
 def getListItem(a):

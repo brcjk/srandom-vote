@@ -36,7 +36,7 @@ list1.append('ª')
 
 #something here
 
-list1 = list1[:86]
+list1 = list1[:]
 
 
 def getListItem(a):

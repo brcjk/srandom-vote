@@ -35,8 +35,11 @@ list1.append('¨')
 list1.append('ª')
 
 #something here
-
-list1 = list1[:33]
+try:
+    list1 = list1[:int(sys.argv[1])]
+    h = ""
+except:
+    h = str(sys.argv[1])
 
 
 def getListItem(a):
@@ -48,18 +51,21 @@ def popItems(l):
     return
 bsaver = []
 def teir(*args):
-    for n in reversed(args):
-        b = list(n.strip())
-        popItems(b)
-        random.shuffle(b)
-        bsaver.append(b)
-    random.shuffle(list1)
-    print("".join(x for x in list1), end='')
+    result = ""
+    for n in reversed(args):            # Reverse order of the teir function
+        b = list(n.strip())             # I have no idea
+        popItems(b)                     # Remove specific characters from our list
+        random.shuffle(b)               # Shuffle our removed characters
+        bsaver.append(b)                # Store our characters for later
+    random.shuffle(list1)               # Shuffle our non-removed characters
+    result += "".join(x for x in list1) # Append non-removed characters to result
     for b in bsaver:
-        print("".join(x for x in b), end='')
-    print()
-    
-items = '''HA'''
-teir("ZGC","", '')
+        result += "".join(x for x in b) # Append removed characters to result
+    return result
+
+items = sys.argv[2:]
+
+result = teir(h, *items)   # :)
 #WORST FIRST
 
+print(result)

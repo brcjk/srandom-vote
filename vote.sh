@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CWD=$(pwd)
+CWD=$(cd $(dirname $0) && pwd)
 
 
 

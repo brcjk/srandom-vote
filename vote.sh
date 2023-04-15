@@ -1,51 +1,48 @@
-#!/bin/bash
+#!/bin/sh
 
 CWD=$(cd $(dirname $0) && pwd)
 
 NUM=$1
 AGR="$@"
 
-while getopts ":-:i:" opt; do
+while getopts ":-:" opt; do
   case $opt in
-    i) 
-      if [ ! -f "$OPTARG" ]; then
-        echo "File does not exist"
-        exit 2
-      fi
-      /usr/bin/python3 $CWD/vote.py "" $(cat $OPTARG); exit 0;;
-    
     -)
-      case $OPTARG in
-        *)
-          echo "Usage: ./vote.sh [VAL] [-i|--input-file FILE]|LIST]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
-      ;;
-      esac;;
+;;
     \?)
-          echo "Usage: ./vote.sh [VAL] [-i|--input-file FILE]|LIST]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
       ;;  
-    :)
-      echo "File not provided"
-      exit 1
-      ;;
   esac
 done
 
 shift 1;
 
 while getopts ":-:i:" opt; do
+
   case $opt in
     i)
-      if [ ! -f "$OPTARG" ]; then
-        echo "File does not exist"
-        exit 2
-      fi
-      /usr/bin/python3 $CWD/vote.py $NUM $(cat $OPTARG)
+      if [[ $1 == "-i" ]]; then
       
-      exit 0
+        if [ -z "$2" ]; then
+          echo "File not provided"
+          exit 2
+        elif [ ! -f "$2" ]; then
+          echo "File does not exist: $2"
+          exit 2
+        fi
+        file=$2
+        shift 2
+        echo $0
+        /usr/bin/python3 $CWD/vote.py $NUM $(cat $file) "$@"
+        exit 0
+        
+      else 
+      echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."; exit 0 
+      fi
       ;;
-    
     -)
       case $OPTARG in
         input-file)
@@ -53,17 +50,21 @@ while getopts ":-:i:" opt; do
           if [ -z "$val" ]; then 
             echo "File not provided"
             exit 1 
+          elif [ ! -f "$val" ]; then
+            echo "File does not exist: $val"
+            exit 2
           fi
-          /usr/bin/python3 $CWD/vote.py $NUM $(cat $val)
+          shift 2
+          /usr/bin/python3 $CWD/vote.py $NUM $(cat $val) "$@"
           exit 0
       ;;
         *)
-          echo "Usage: ./vote.sh [VAL] [-i|--input-file FILE]|LIST]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
       ;;
       esac;;
     \?)
-          echo "Usage: ./vote.sh [VAL] [-i|--input-file FILE]|LIST]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
       ;;
     :)

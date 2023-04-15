@@ -36,12 +36,10 @@ list1.append('ª')
 
 #something here
 try:
-    list1 = list1[:int(sys.argv[1])]
+    list1 = list1[:None if sys.argv[1] == 'None' else int(sys.argv[1])]
     h = ""
-except ValueError:
-    h = str(sys.argv[1])
-except IndexError:
-    h = ""
+except (ValueError, IndexError):
+    raise TypeError("VAL must be a integer or None!")
 
 
 def getListItem(a):

@@ -61,12 +61,12 @@ while getopts ":-:i:" opt; do
       ;;
         *)
           echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
-          exit 0
+          
       ;;
       esac;;
     \?)
           echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
-          exit 0
+          
       ;;
     :)
       echo "File not provided"

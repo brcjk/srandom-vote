@@ -66,6 +66,6 @@ def teir(*args):
 items = sys.argv[2:]
 
 RESULT = teir(h, *items)   # :)
-#WORST FIRST
+# WORST FIRST
 
 print(RESULT)

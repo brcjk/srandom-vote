@@ -1,8 +1,6 @@
 #!/bin/sh
 
-CWD=$(cd $(dirname "$0") && pwd)
-
-set -o noglob
+CWD=$(cd $(dirname $0) && pwd)
 
 NUM=$1
 AGR="$@"
@@ -10,11 +8,11 @@ AGR="$@"
 while getopts ":-:" opt; do
   case $opt in
     -)
-          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
 ;;
     \?)
-          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
           exit 0
       ;;  
   esac
@@ -37,11 +35,12 @@ while getopts ":-:i:" opt; do
         fi
         file=$2
         shift 2
-        /usr/bin/python3 $CWD/vote.py "$NUM" $(<"$file") "$@"
+        echo $0
+        /usr/bin/python3 $CWD/vote.py $NUM $(cat $file) "$@"
         exit 0
         
       else 
-      echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"; exit 0 
+      echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."; exit 0 
       fi
       ;;
     -)
@@ -56,10 +55,11 @@ while getopts ":-:i:" opt; do
             exit 2
           fi
           shift 2
-          /usr/bin/python3 $CWD/vote.py "$NUM" $(<"$val") "$@"
+          /usr/bin/python3 $CWD/vote.py $NUM $(cat $val) "$@"
           exit 0
       ;;
         *)
+<<<<<<< HEAD
           echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
           
       ;;
@@ -67,6 +67,15 @@ while getopts ":-:i:" opt; do
     \?)
           echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
           
+=======
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
+          exit 0
+      ;;
+      esac;;
+    \?)
+          echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST]..."
+          exit 0
+>>>>>>> parent of 468e202 (maybe final;)
       ;;
     :)
       echo "File not provided"

@@ -1,9 +1,8 @@
 import sys
 import io
-import random
-
 sys.stdout = io.TextIOWrapper(buffer=sys.stdout.buffer,encoding='utf8')
 
+import random
 list1 = []
 for i in range(65, 91):
     list1.append(chr(i))
@@ -19,8 +18,8 @@ for i in range(35, 43):
 for i in range(44, 48):
     list1.append(chr(i))
 for i in range(58, 65):
-    if i != 61:
-        list1.append(chr(i))
+    if i != 61: 
+        list1.append(chr(i)) 
 for i in range(94, 97):
     list1.append(chr(i))
 for i in range(123, 127):
@@ -39,33 +38,39 @@ list1.append('ª')
 try:
     list1 = list1[:None if sys.argv[1] == 'None' else int(sys.argv[1])]
     h = ""
-except (ValueError, IndexError) as exc:
-    raise TypeError("VAL must be a integer or None!") from exc
+except (ValueError, IndexError):
+    raise TypeError("VAL must be a integer or None!")
 
 
-def get_list_item(a):
+def getListItem(a):
     thething = list1.index(a)
     return thething
-def pop_items(l):
+def popItems(l):
     for x in l:
-        list1.pop(get_list_item(x))
+        list1.pop(getListItem(x))
+    return
 bsaver = []
 def teir(*args):
     result = ""
     for n in reversed(args):            # Reverse order of the teir function
         b = list(n.strip())             # I have no idea
-        pop_items(b)                    # Remove specific characters from our list
+        popItems(b)                     # Remove specific characters from our list
         random.shuffle(b)               # Shuffle our removed characters
         bsaver.append(b)                # Store our characters for later
     random.shuffle(list1)               # Shuffle our non-removed characters
     result += "".join(x for x in list1) # Append non-removed characters to result
-    for _b in bsaver:
-        result += "".join(x for x in _b)# Append removed characters to result
+    for b in bsaver:
+        result += "".join(x for x in b) # Append removed characters to result
     return result
 
 items = sys.argv[2:]
 
+<<<<<<< HEAD
 RESULT = teir(h, *items)   # :)
 # WORST FIRST
+=======
+result = teir(h, *items)   # :)
+#WORST FIRST
+>>>>>>> parent of 468e202 (maybe final;)
 
-print(RESULT)
+print(result)

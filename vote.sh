@@ -20,6 +20,11 @@ while getopts ":-:" opt; do
   esac
 done
 
+if [ -z $1 ]; then 
+  echo "Usage: ./vote.sh VAL|\"None\" [[-i|--input-file FILE]|LIST...]"
+  exit 0
+fi
+
 shift 1;
 
 while getopts ":-:i:" opt; do

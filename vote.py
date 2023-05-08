@@ -4,41 +4,11 @@ import random
 
 sys.stdout = io.TextIOWrapper(buffer=sys.stdout.buffer,encoding='utf8')
 
-list1 = []
-for i in range(65, 91):
-    list1.append(chr(i))
-
-for i in range(97, 123):
-    list1.append(chr(i))
-for i in range(10):
-    list1.append(str(i))
-list1.append("!")
-for i in range(35, 43):
-    if i != 39:
-        list1.append(chr(i))
-for i in range(44, 48):
-    list1.append(chr(i))
-for i in range(58, 65):
-    if i != 61:
-        list1.append(chr(i))
-for i in range(94, 97):
-    list1.append(chr(i))
-for i in range(123, 127):
-    list1.append(chr(i))
-for i in range(161, 163):
-    list1.append(chr(i))
-list1.append('£')
-list1.append('¤')
-list1.append('¥')
-list1.append('¦')
-list1.append('§')
-list1.append('¨')
-list1.append('ª')
+list1 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '#', '$', '%', '&', '(', ')', '*', ',', '-', '.', '/', ':', ';', '<', '>', '?', '@', '^', '_', '`', '{', '|', '}', '~', '¡', '¢', '£', '¤', '¥', '¦', '§', '¨', 'ª']
 
 #something here
 try:
     list1 = list1[:None if sys.argv[1] == 'None' else int(sys.argv[1])]
-    h = ""
 except (ValueError, IndexError) as exc:
     raise TypeError("VAL must be a integer or None!") from exc
 
@@ -65,7 +35,7 @@ def teir(*args):
 
 items = sys.argv[2:]
 
-RESULT = teir(h, *items)   # :)
-#WORST FIRST
+RESULT = teir(*items)   # :)
+# WORST FIRST
 
 print(RESULT)
